@@ -1,0 +1,91 @@
+---
+title: "window functions"
+author: "waheeb Algabri"
+output:
+  pdf_document: default
+  html_document:
+    highlight: pygments
+    theme: cerulean
+    toc: true
+    toc_float: true
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(eval = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(openintro)
+```
+
+
+
+```{r}
+# Load the package into R
+library(RMySQL)
+library(DBI)
+
+# Connect to your MySQL database
+con <- dbConnect(MySQL(),
+                 host = "localhost",
+                 user = "root",
+                 password = "Alex9297248844",
+                 dbname = "windows_functions")
+
+```
+
+
+retrieve the data
+
+
+```{r}
+
+df <- dbGetQuery(con, "SELECT * FROM prices")
+
+```
+
+
+```{r}
+head(df,10)
+```
+
+i used the window functions in mySQL to calculate the year-to-date average and the six-day moving averages for each item.
+
+here what i got 
+
+
+```{r}
+# Load the package into R
+library(RMySQL)
+library(DBI)
+
+# Connect to your MySQL database
+con <- dbConnect(MySQL(),
+                 host = "localhost",
+                 user = "root",
+                 password = "Alex9297248844",
+                 dbname = "windows_functions")
+
+```
+
+
+Retrive the data 
+
+```{r}
+df2 <- dbGetQuery(con, "SELECT * FROM price_averages")
+
+```
+
+
+```{r}
+head(df2 , 10)
+```
+
+
+Disconnect from the database
+
+```{r}
+dbDisconnect(con)
+
+```
+
